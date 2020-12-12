@@ -3,6 +3,50 @@
 # 파이썬 Excel, CSV 파일 읽기 및 쓰기
 
 # CSV : MINE - text/csv
+import csv
 
 # 예제 1
-with open ('./resource/sample1.csv')
+with open ('./resource/sample1.csv') as f:
+    reader = csv.reader(f)
+    # next(reader) # 패싱하기 위해 사용 (해더 스킵용도)
+
+    # 확인
+    print(type(reader))
+    print(dir(reader))
+    print()
+
+    for c in reader :
+        print(c)
+
+
+# 예제 2
+with open ('./resource/sample2.csv') as f:
+    reader = csv.reader(f, delimiter = '|') # delimiter 는 문자열을 기준으로 스플릿 해서 보여줌
+    # next(reader) # 패싱하기 위해 사용 (해더 스킵용도)
+
+    # 확인
+    print(type(reader))
+    print(dir(reader))
+    print()
+
+    for c in reader :
+        print(c)
+
+# 예제 3 (Dict 변환)
+# Key, Value 값으로 저장이 가능하다.
+with open ('./resource/sample1.csv') as f:
+    reader = csv.DictReader(f)
+
+    for c in reader : 
+        for k, v in c.items():
+            print(k, v)
+        print('---------------------------')
+
+# 예제 4
+w = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15,],[16, 17, 18]]
+
+with open ('./resource/sample3.csv', 'w', newline= '') as f: # 대용량을 사용 할 때 자동 줄바꿈을 방지할 수 있는 것이 newline
+    wt = csv.writer(f)
+
+    for v in w:
+        wt.writerow(v)
