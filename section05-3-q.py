@@ -103,6 +103,7 @@ for v in q5:
 print()
 q6 = ["A", "b", "c", "D", "e", "F", "G", "h"]
 
+
 for v in q6 :
     if v.isupper():
         print(v.lower())
